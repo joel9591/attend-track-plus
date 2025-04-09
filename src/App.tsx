@@ -16,42 +16,47 @@ import AnnouncementsPage from "./pages/AnnouncementsPage";
 import RequestsPage from "./pages/RequestsPage";
 import NotFound from "./pages/NotFound";
 
+// Create the query client
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
+// Define the App component properly as a function component
+const App = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <DataProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              {/* Public Routes */}
-              <Route path="/login" element={<Login />} />
-              
-              {/* Protected Routes - Both Roles */}
-              <Route element={<ProtectedRoute />}>
-                <Route path="/" element={<Index />} />
-                <Route path="/tasks" element={<TasksPage />} />
-                <Route path="/attendance" element={<AttendancePage />} />
-                <Route path="/announcements" element={<AnnouncementsPage />} />
-                <Route path="/requests" element={<RequestsPage />} />
-              </Route>
-              
-              {/* Admin-Only Routes */}
-              <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
-                {/* Add future admin-only routes here */}
-              </Route>
-              
-              {/* Catch All */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
+          {/* Move TooltipProvider inside the component body */}
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
+                {/* Public Routes */}
+                <Route path="/login" element={<Login />} />
+                
+                {/* Protected Routes - Both Roles */}
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/tasks" element={<TasksPage />} />
+                  <Route path="/attendance" element={<AttendancePage />} />
+                  <Route path="/announcements" element={<AnnouncementsPage />} />
+                  <Route path="/requests" element={<RequestsPage />} />
+                </Route>
+                
+                {/* Admin-Only Routes */}
+                <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
+                  {/* Add future admin-only routes here */}
+                </Route>
+                
+                {/* Catch All */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </TooltipProvider>
         </DataProvider>
       </AuthProvider>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+    </QueryClientProvider>
+  );
+};
 
 export default App;
