@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -20,12 +20,12 @@ const ProfilePage = () => {
     emergencyContact: "9988776655", // Mock data
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     // Mock update profile
     toast({
@@ -34,7 +34,7 @@ const ProfilePage = () => {
     });
   };
 
-  const handlePasswordChange = (e: React.FormEvent) => {
+  const handlePasswordChange = (e) => {
     e.preventDefault();
     // Mock password change
     toast({
@@ -63,6 +63,7 @@ const ProfilePage = () => {
                 </Avatar>
               </div>
               
+              {/* Form fields */}
               <div className="space-y-2">
                 <Label htmlFor="name">Full Name</Label>
                 <Input 

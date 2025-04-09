@@ -1,14 +1,10 @@
 
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import MainLayout from '@/components/layout/Layout';
 
-interface ProtectedRouteProps {
-  allowedRoles?: ('admin' | 'employee')[];
-}
-
-const ProtectedRoute = ({ allowedRoles }: ProtectedRouteProps) => {
+const ProtectedRoute = ({ allowedRoles }) => {
   const { user, loading, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -17,7 +13,7 @@ const ProtectedRoute = ({ allowedRoles }: ProtectedRouteProps) => {
     if (!loading && !isAuthenticated) {
       navigate('/login', { replace: true });
     } else if (!loading && isAuthenticated && user && allowedRoles) {
-      if (!allowedRoles.includes(user.role as 'admin' | 'employee')) {
+      if (!allowedRoles.includes(user.role)) {
         navigate('/', { replace: true });
       }
     }
