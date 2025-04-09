@@ -1,4 +1,5 @@
 
+import React from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -21,16 +22,15 @@ import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
 import NotFound from "./pages/NotFound";
 
-// Create the query client
-const queryClient = new QueryClient();
-
 // Define the App component properly as a function component
 const App = () => {
+  // Create the query client inside the component
+  const queryClient = new QueryClient();
+  
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <DataProvider>
-          {/* Move TooltipProvider inside the component body */}
           <TooltipProvider>
             <Toaster />
             <Sonner />
