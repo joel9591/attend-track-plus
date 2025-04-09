@@ -14,6 +14,11 @@ import TasksPage from "./pages/TasksPage";
 import AttendancePage from "./pages/AttendancePage";
 import AnnouncementsPage from "./pages/AnnouncementsPage";
 import RequestsPage from "./pages/RequestsPage";
+import SchoolsPage from "./pages/SchoolsPage";
+import EmployeesPage from "./pages/EmployeesPage";
+import SalaryPage from "./pages/SalaryPage";
+import ProfilePage from "./pages/ProfilePage";
+import SettingsPage from "./pages/SettingsPage";
 import NotFound from "./pages/NotFound";
 
 // Create the query client
@@ -41,11 +46,15 @@ const App = () => {
                   <Route path="/attendance" element={<AttendancePage />} />
                   <Route path="/announcements" element={<AnnouncementsPage />} />
                   <Route path="/requests" element={<RequestsPage />} />
+                  <Route path="/profile" element={<ProfilePage />} />
+                  <Route path="/salary" element={<SalaryPage />} />
+                  <Route path="/settings" element={<SettingsPage />} />
                 </Route>
                 
                 {/* Admin-Only Routes */}
                 <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
-                  {/* Add future admin-only routes here */}
+                  <Route path="/schools" element={<SchoolsPage />} />
+                  <Route path="/employees" element={<EmployeesPage />} />
                 </Route>
                 
                 {/* Catch All */}
